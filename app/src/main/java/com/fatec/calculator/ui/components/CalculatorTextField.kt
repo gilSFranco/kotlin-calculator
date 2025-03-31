@@ -18,20 +18,22 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.fatec.calculator.ui.theme.BRANCO
-import com.fatec.calculator.ui.theme.PRETO
+import com.fatec.calculator.ui.theme.BRANCO_MENOS_CLARO
+import com.fatec.calculator.ui.theme.PRETO_MAIS_CLARO
 import com.fatec.calculator.ui.theme.Typography
 import com.fatec.calculator.ui.theme.VERMELHO
 
 @Composable
-fun CalculatorTextField (
+fun CalculatorTextField(
     value: String,
     onValueChange: (String) -> Unit,
     isError: Boolean,
     label: String,
     placeholder: String,
     keyboardType: KeyboardType,
-    lastOne: Boolean
+    lastOne: Boolean = false,
+    errorState: String?,
+    isDarkTheme: Boolean
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -41,32 +43,35 @@ fun CalculatorTextField (
         isError = isError,
         modifier = Modifier
             .fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(15.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            unfocusedTextColor = PRETO,
-            focusedTextColor = PRETO,
+            unfocusedTextColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
+            focusedTextColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
 
-            unfocusedBorderColor = PRETO,
-            focusedBorderColor = PRETO,
+            unfocusedBorderColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
+            focusedBorderColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
 
-            unfocusedContainerColor = BRANCO,
-            focusedContainerColor = BRANCO,
+            unfocusedContainerColor = if (!isDarkTheme) BRANCO_MENOS_CLARO else PRETO_MAIS_CLARO,
+            focusedContainerColor = if (!isDarkTheme) BRANCO_MENOS_CLARO else PRETO_MAIS_CLARO,
 
-            unfocusedLabelColor = PRETO,
-            focusedLabelColor = PRETO,
+            unfocusedLabelColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
+            focusedLabelColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
 
-            unfocusedPlaceholderColor = PRETO,
-            focusedPlaceholderColor = PRETO,
+            unfocusedPlaceholderColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
+            focusedPlaceholderColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
 
-            unfocusedLeadingIconColor = PRETO,
-            focusedLeadingIconColor = PRETO,
+            unfocusedLeadingIconColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
+            focusedLeadingIconColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
 
-            cursorColor = PRETO,
+            cursorColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
 
-            focusedSupportingTextColor = PRETO,
-            unfocusedSupportingTextColor = PRETO,
+            focusedSupportingTextColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
+            unfocusedSupportingTextColor = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO,
 
-            errorSupportingTextColor = VERMELHO
+            errorSupportingTextColor = VERMELHO,
+            errorTextColor = VERMELHO,
+            errorPlaceholderColor = VERMELHO,
+            errorLeadingIconColor = VERMELHO
         ),
         label = {
             Text(
@@ -85,7 +90,7 @@ fun CalculatorTextField (
                 Icons.Filled.Edit,
                 contentDescription = "Icone de Caneta",
                 modifier = Modifier
-                    .scale(1.2f)
+                    .scale(0.8f)
             )
         },
         singleLine = true,
@@ -103,7 +108,7 @@ fun CalculatorTextField (
         ),
         supportingText = {
             Text(
-                text = "Required text",
+                text = errorState ?: "",
                 style = Typography.labelSmall
             )
         }

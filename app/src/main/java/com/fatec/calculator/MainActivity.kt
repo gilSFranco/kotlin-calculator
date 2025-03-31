@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             var isDarkTheme = remember {
-                mutableStateOf(false)
+                mutableStateOf(true)
             }
 
             CalculatorTheme(

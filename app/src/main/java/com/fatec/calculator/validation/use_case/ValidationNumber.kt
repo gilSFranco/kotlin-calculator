@@ -4,11 +4,20 @@ import com.fatec.calculator.validation.ValidationResult
 
 class ValidationNumber {
 
-    fun execute (number: Int) : ValidationResult {
-        if (number.toString().isBlank()) {
+    fun execute (number: String) : ValidationResult {
+        if (number.isBlank()) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "Digite o primeiro valor"
+                errorMessage = "Digite um número"
+            )
+        }
+
+        val containsInvalidChar = number.any { !it.isDigit() }
+
+        if (containsInvalidChar) {
+            return ValidationResult(
+                successful = false,
+                errorMessage = "Somente números são aceitos"
             )
         }
 

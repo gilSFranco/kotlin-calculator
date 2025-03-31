@@ -1,5 +1,6 @@
 package com.fatec.calculator.ui.components
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -8,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import com.fatec.calculator.R
 import com.fatec.calculator.ui.theme.BRANCO
 import com.fatec.calculator.ui.theme.PRETO
@@ -42,6 +44,8 @@ fun SwitchTheme (
             uncheckedThumbColor = PRETO,
             checkedTrackColor = PRETO,
             uncheckedTrackColor = BRANCO
-        )
+        ),
+        modifier = Modifier
+            .padding(end = 10.dp)
     )
 }

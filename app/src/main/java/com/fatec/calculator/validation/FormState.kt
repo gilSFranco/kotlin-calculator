@@ -1,8 +1,8 @@
 package com.fatec.calculator.validation
 
 data class FormState (
-    val firstValue: Int = 0,
+    val firstValue: String = "",
     val firstValueError: String? = null,
-    val secondValue: Int = 0,
+    val secondValue: String = "",
     val secondValueError: String? = null
 )

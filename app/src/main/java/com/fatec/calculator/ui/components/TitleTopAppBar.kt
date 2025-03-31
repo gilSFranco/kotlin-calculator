@@ -12,10 +12,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.fatec.calculator.R
+import com.fatec.calculator.ui.theme.BRANCO_MENOS_CLARO
+import com.fatec.calculator.ui.theme.PRETO_MAIS_CLARO
 import com.fatec.calculator.ui.theme.Typography
 
 @Composable
-fun TitleTopAppBar () {
+fun TitleTopAppBar (
+    isDarkTheme: Boolean
+) {
     Row (
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(5.dp)
@@ -24,12 +28,14 @@ fun TitleTopAppBar () {
             imageVector = ImageVector.vectorResource(id = R.drawable.baseline_calculate_24),
             contentDescription = "Icone de calculadora",
             modifier = Modifier
-                .scale(1.2f)
+                .scale(1.2f),
+            tint = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO
         )
 
         Text(
             text = "Calculadora",
-            style = Typography.titleLarge
+            style = Typography.titleLarge,
+            color = if (!isDarkTheme) PRETO_MAIS_CLARO else BRANCO_MENOS_CLARO
         )
     }
 }
