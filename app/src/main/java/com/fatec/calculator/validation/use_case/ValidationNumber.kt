@@ -4,6 +4,8 @@ import com.fatec.calculator.validation.ValidationResult
 
 class ValidationNumber {
 
+    private val decimalRegex = Regex("^-?\\d+(?:[.,]\\d+)?$")
+
     fun execute (number: String) : ValidationResult {
         if (number.isBlank()) {
             return ValidationResult(
@@ -12,12 +14,10 @@ class ValidationNumber {
             )
         }
 
-        val containsInvalidChar = number.any { !it.isDigit() }
-
-        if (containsInvalidChar) {
+        if (!decimalRegex.matches(number)) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "Somente números são aceitos"
+                errorMessage = "Digite um número válido"
             )
         }
 

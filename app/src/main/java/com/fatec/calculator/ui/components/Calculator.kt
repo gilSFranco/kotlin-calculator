@@ -200,21 +200,24 @@ fun Calculator (
                 viewModelFirstValue.onEvent(FirstValueFormEvent.Submit)
                 viewModelSecondValue.onEvent(SecondValueFormEvent.Submit)
 
+                val firstValue = stateFirstValue.firstValue.replace(',', '.')
+                val secondValue = stateSecondValue.secondValue.replace(',', '.')
+
                 when {
                     isValidationSuccessful && sum -> {
-                        result = stateFirstValue.firstValue.toFloat() + stateSecondValue.secondValue.toFloat()
+                        result = firstValue.toFloat() + secondValue.toFloat()
                     }
 
                     isValidationSuccessful && subtraction -> {
-                        result = stateFirstValue.firstValue.toFloat() - stateSecondValue.secondValue.toFloat()
+                        result = firstValue.toFloat() - secondValue.toFloat()
                     }
 
                     isValidationSuccessful && multiplication -> {
-                        result = stateFirstValue.firstValue.toFloat() * stateSecondValue.secondValue.toFloat()
+                        result = firstValue.toFloat() * secondValue.toFloat()
                     }
 
                     isValidationSuccessful && division -> {
-                        result = stateFirstValue.firstValue.toFloat() / stateSecondValue.secondValue.toFloat()
+                        result = firstValue.toFloat() / secondValue.toFloat()
                     }
                 }
             },
